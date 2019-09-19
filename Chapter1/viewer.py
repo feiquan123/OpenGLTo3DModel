@@ -15,6 +15,7 @@ from numpy.linalg import norm, inv
 from Chapter1.primtive import init_primitives
 from Chapter1.scene import Scene
 from Chapter1.node import Sphere
+from Chapter1.SnowFigure import SonwFigure
 
 
 class Viewer:
@@ -82,11 +83,17 @@ class Viewer:
         # 设置球体的颜色
         sphere_node.color_index = 2
         # 设置球体位置
-        sphere_node.translate(2,2,0)
+        sphere_node.translate(2, 2, 0)
         # 设置缩放
         sphere_node.scale(4)
         # 将球体放进场景中，默认在中心
         self.scene.add_node(sphere_node)
+
+        # 添加雪人
+        hierarchical_node = SonwFigure()
+        hierarchical_node.translate(-2, 0, -2)
+        hierarchical_node.scale(2)
+        self.scene.add_node(hierarchical_node)
 
     def init_interaction(self):
         # 初始化场景后实现
@@ -121,21 +128,21 @@ class Viewer:
 
     def init_view(self):
         ''' 初始化投影矩阵 '''
-        xSize,ySize = glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT)
+        xSize, ySize = glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT)
         # 获取屏幕宽高比
-        aspect_ratio = float(xSize)/float(ySize)
+        aspect_ratio = float(xSize) / float(ySize)
 
         # 设置投影矩阵
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
 
         # 设置视口，与窗口重合
-        glViewport(0,0,xSize,ySize)
+        glViewport(0, 0, xSize, ySize)
         # 设置透视，摄像机上下视野幅度70度
         # 视野范围到距离摄像机1000个单位为止
-        gluPerspective(70,aspect_ratio,0.1,1000.0)
+        gluPerspective(70, aspect_ratio, 0.1, 1000.0)
         # 摄像机镜头从原点后退15个单位
-        glTranslated(0,0,-15)
+        glTranslated(0, 0, -15)
 
 
 if __name__ == '__main__':

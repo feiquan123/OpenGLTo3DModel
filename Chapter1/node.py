@@ -65,3 +65,13 @@ class Sphere(Primitive):
     def __init__(self):
         super().__init__()
         self.call_list = G_OBJ_SPHERE
+
+
+class HierarchicalNode(Node):
+    def __init__(self):
+        super().__init__()
+        self.child_nodes = []
+
+    def render_self(self):
+        for child in self.child_nodes:
+            child.render()
