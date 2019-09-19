@@ -81,6 +81,10 @@ class Viewer:
         sphere_node = Sphere()
         # 设置球体的颜色
         sphere_node.color_index = 2
+        # 设置球体位置
+        sphere_node.translate(2,2,0)
+        # 设置缩放
+        sphere_node.scale(4)
         # 将球体放进场景中，默认在中心
         self.scene.add_node(sphere_node)
 

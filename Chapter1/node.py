@@ -3,10 +3,11 @@ from OpenGL.GL import glCallList, glColor3f, glMaterialfv, glMultMatrixf, glPopM
     GL_EMISSION, GL_FRONT
 import numpy
 
-
 import Chapter1.color as color
- # 标识代码段的数字
+# 标识代码段的数字
 from Chapter1.primtive import G_OBJ_SPHERE
+# 仿射变换
+from Chapter1.transformation import scaling, translation
 
 
 class Node:
@@ -36,6 +37,16 @@ class Node:
             "The Abstract Node Class doesn't define 'render_self'"
         )
 
+    '''平移'''
+
+    def translate(self, x, y, z):
+        self.translation_matrix = numpy.dot(self.translation_matrix, translation([x, y, z]))
+
+    ''' 缩放 '''
+
+    def scale(self, s):
+        self.scaling_matrix = numpy.dot(self.scaling_matrix, scaling([s, s, s]))
+
 
 # 图元类
 class Primitive(Node):
@@ -50,6 +61,7 @@ class Primitive(Node):
 
 class Sphere(Primitive):
     ''' 球形图元'''
+
     def __init__(self):
         super().__init__()
         self.call_list = G_OBJ_SPHERE
