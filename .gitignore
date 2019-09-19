@@ -1,4 +1,9 @@
 /.idea
+readme_temp.md
 
 # 匹配多级目录,不上传缓存
+<<<<<<< HEAD
 /**/__pycache__/
+=======
+/**/__pycache__
+>>>>>>> d07b4e05e399f3eb7b2009a82d82a9882df9d0e6
